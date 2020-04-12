@@ -17,7 +17,7 @@ class CourseSeeder {
   async run () {
     const courseArray = await Factory
       .model('App/Models/Course')
-      .createMany(5)
+      .createMany(8)
   }
 }
 

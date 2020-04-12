@@ -20,7 +20,8 @@ class CourseController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    return Course.all()
+    let { page = 1, limit = 10, sort = 'title', sortDirection = 'asc'} = request.all()
+    return Course.query().orderBy(sort, sortDirection).paginate(page, limit)
   }
 
   /**

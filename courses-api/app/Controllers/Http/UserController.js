@@ -20,7 +20,8 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    return User.all()
+    let { page = 1, limit = 10, sort = 'name', sortDirection = 'asc'} = request.all()
+    return User.query().orderBy(sort, sortDirection).paginate(page, limit)
   }
 
   /**
