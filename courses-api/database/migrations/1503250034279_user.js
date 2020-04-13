@@ -13,7 +13,7 @@ class UserSchema extends Schema {
       table.string('name')
       table.string('phone')
       table.string('address')
-      table.date('admission_date')
+      table.timestamp('admission_date')
       table.string('avatar')
       table.timestamps()
     })

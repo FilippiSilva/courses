@@ -22,7 +22,7 @@ Factory.blueprint('App/Models/User', (faker) => {
     name: faker.name(),
     phone: faker.phone({ country: 'br', formatted: false }),
     address: faker.address(),
-    admission_date: faker.date({ min: new Date('2015-01-01 00:00')}),
+    admission_date: faker.date({ year: '2019' }),
     avatar: faker.avatar()
   }
 })
