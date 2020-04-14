@@ -60,7 +60,7 @@ class CourseController {
    */
   async update ({ params, request, response }) {
     const data = request.only(['title', 'description', 'workload', 'value', 'cover'])
-    const course = Course.find(params.id)
+    const course = await Course.find(params.id)
 
     course.merge(data)
 

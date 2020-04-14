@@ -78,7 +78,7 @@ class UserController {
       'admission_date',
       'avatar'
     ])
-    const user = User.find(params.id)
+    const user = await User.find(params.id)
 
     user.merge(data)
 
