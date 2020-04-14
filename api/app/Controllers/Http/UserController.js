@@ -94,9 +94,9 @@ class UserController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
-    const coures = User.find(params.id)
+    const user = await User.find(params.id)
 
-    await coures.delete()
+    return user.delete()
   }
 }
 

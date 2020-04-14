@@ -23,7 +23,7 @@ Factory.blueprint('App/Models/User', (faker) => {
     phone: faker.phone({ country: 'br', formatted: false }),
     address: faker.address(),
     admission_date: faker.date({ year: '2019' }),
-    avatar: faker.avatar()
+    avatar: faker.avatar() + '?d=robohash'
   }
 })
 

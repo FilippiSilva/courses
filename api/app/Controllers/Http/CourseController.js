@@ -78,7 +78,7 @@ class CourseController {
   async destroy ({ params, request, response }) {
     const course = await Course.find(params.id)
 
-    await course.delete()
+    return course.delete()
   }
 }
 
