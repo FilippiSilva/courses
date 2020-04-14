@@ -1,52 +1,71 @@
 <form name="userForm" ng-submit="onSubmit()">
   <md-content layout-padding>
     <md-card class="p3">
-      <md-input-container class="md-block">
+      <h1>Usuário</h1>
+
+      <md-input-container class="container-name">
         <label>Nome</label>
         <input ng-model="user.name" required>
       </md-input-container>
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-phone">
         <label>Telefone</label>
         <input ng-model="user.phone" required>
       </md-input-container>
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-email">
         <label>Email</label>
         <input ng-model="user.email" type="email" required>
       </md-input-container>
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-address">
         <label>Endereço</label>
         <input ng-model="user.address">
       </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Data de admissão</label>
-        <input ng-model="user.admission_date">
+      <md-input-container class="container-admission_date">
+        <label>Admissão</label>
+        <md-datepicker ng-model="user.admission_date"></md-datepicker>
       </md-input-container>
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-avatar">
         <label>Avatar URL</label>
         <input ng-model="user.avatar">
       </md-input-container>
 
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-username">
         <label>Login</label>
         <input ng-model="user.username" required>
       </md-input-container>
 
-      <md-input-container class="md-block">
+      <md-input-container class="container-password">
         <label>Senha</label>
         <input ng-model="user.password" required type="password">
       </md-input-container>
 
-      
-      <md-button class="md-raised" md-colors="{background: 'green'}" aria-label="Novo" type="submit">
-        <!-- <md-icon>plus</md-icon> -->
-        Salvar
-      </md-button>
+      <div>
+        <md-button class="md-raised" md-colors="{background: 'green'}" aria-label="Novo" type="submit">
+          Salvar
+        </md-button>
+      </div>
     </md-card>
   </md-content>
 </form>
+
+<style>
+  [name=userForm] .container-name, 
+  [name=userForm] .container-email,
+  [name=userForm] .container-address,
+  [name=userForm] .container-avatar {
+    max-width: 500px;
+  }
+
+  [name=userForm] .container-phone,
+  [name=userForm] .container-email,
+  [name=userForm] .container-admission_date,
+  [name=userForm] .container-username,
+  [name=userForm] .container-password {
+    max-width: 250px;
+  }
+</style>

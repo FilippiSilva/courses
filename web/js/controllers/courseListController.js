@@ -1,4 +1,4 @@
-angular.module('app').controller('courseListCtrl', function ($scope, courseService) {
+angular.module('app').controller('courseListCtrl', function ($scope, $mdDialog, courseService) {
   $scope.loading = false
   $scope.courses = []
   $scope.query = {
@@ -19,6 +19,21 @@ angular.module('app').controller('courseListCtrl', function ($scope, courseServi
     })
   }
 
+  
+  $scope.remove = function (course) {
+    var confirm = $mdDialog.confirm()
+    .title('Tem certeza disso?')
+    .textContent(`Você vai remover o curso "${course.title}".`)
+    .ok('Sim')
+    .cancel('Não')
+
+    $mdDialog.show(confirm).then(function() {
+        $scope.loading = courseService.remove(course.id)
+          .then(() => $scope.fetch())
+      }, function() {
+        console.log('remove -> confirm -> false')
+      })
+  }
 
   $scope.fetch()
 })

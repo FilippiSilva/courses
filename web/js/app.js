@@ -10,6 +10,18 @@ angular.module('app', ['ui.router', 'ngMaterial', 'md.data.table', 'angular.filt
           controller: 'courseListCtrl'
         })
         .state({
+          name: 'course',
+          url: '/courses/new',
+          templateUrl: 'view/courseForm.html',
+          controller: 'courseFormCtrl'
+        })
+        .state({
+          name: 'courseEdit',
+          url: '/courses/:id/edit',
+          templateUrl: 'view/courseForm.html',
+          controller: 'courseFormCtrl'
+        })
+        .state({
           name: 'users',
           url: '/users',
           templateUrl: 'view/userList.html',
@@ -26,10 +38,5 @@ angular.module('app', ['ui.router', 'ngMaterial', 'md.data.table', 'angular.filt
           url: '/users/:id/edit',
           templateUrl: 'view/userForm.html',
           controller: 'userFormCtrl'
-          // resolve: {
-          //   user: function (userFormCtrl, $stateParams) {
-          //     return userFormCtrl.fetch($stateParams.id)
-          //   }
-          // }
         })
     })

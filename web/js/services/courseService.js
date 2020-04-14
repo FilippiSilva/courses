@@ -5,7 +5,7 @@ angular.module('app').service('courseService', function () {
   function fetchCourse(id) {
     return iAxios.get('/courses/' + id)
       .then(response => {
-        const data = response.data.data
+        const data = response.data
         this.course = data
         return data
       })
@@ -22,8 +22,40 @@ angular.module('app').service('courseService', function () {
       })
   }
 
+  function remove(id) {
+    return iAxios.delete('/courses/' + id)
+  }
+
+
+  function persist(payload) {
+    return iAxios.post('/courses', payload)
+      .then(response => {
+        const data = response.data
+        this.user = data.data
+        return data
+      })
+  }
+
+  function update(payload) {
+    return iAxios.put('/courses/' + payload.id, payload)
+      .then(response => {
+        const data = response.data
+        this.user = data.data
+        return data
+      })
+  }
+
+  function save(payload) {
+    if (payload.id) return this.update(payload)
+    else return this.persist(payload)
+  }
+
   return {
     fetchCourse,
-    fetchCourses
+    fetchCourses,
+    remove,
+    persist,
+    update,
+    save
   }
 })

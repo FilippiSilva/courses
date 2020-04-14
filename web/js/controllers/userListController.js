@@ -34,6 +34,5 @@ angular.module('app').controller('userListCtrl', function ($scope, $mdDialog, us
       })
   }
 
-
   $scope.fetch()
 })
