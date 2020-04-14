@@ -1,4 +1,4 @@
-angular.module('app').controller('userListCtrl', function ($scope, userService) {
+angular.module('app').controller('userListCtrl', function ($scope, $mdDialog, userService) {
   $scope.loading = false
   $scope.users = []
   $scope.query = {
@@ -19,9 +19,19 @@ angular.module('app').controller('userListCtrl', function ($scope, userService) 
     })
   }
 
-  $scope.delete = function (id) {
-    console.log(id)
-    $scope.loading = userService.delete(id)
+  $scope.remove = function (user) {
+    var confirm = $mdDialog.confirm()
+    .title('Tem certeza disso?')
+    .textContent(`Você vai remover o usuário "${user.name}".`)
+    .ok('Sim')
+    .cancel('Não')
+
+    $mdDialog.show(confirm).then(function() {
+        $scope.loading = userService.remove(user.id)
+          .then(() => $scope.fetch())
+      }, function() {
+        console.log('remove -> confirm -> false')
+      })
   }
 
 

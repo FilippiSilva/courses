@@ -1,4 +1,4 @@
-angular.module('app').controller('userFormCtrl', function ($scope, userService) {
+angular.module('app').controller('userFormCtrl', function ($scope, $stateParams, userService) {
   $scope.user = {}
   $scope.loading = false
 
@@ -10,10 +10,14 @@ angular.module('app').controller('userFormCtrl', function ($scope, userService) 
   }
 
   $scope.onSubmit = function () {
-    console.log($scope.user)
     $scope.loading = userService.save($scope.user).then(data => {
       $scope.loading = false
       $scope.user = data
     })
+  }
+
+  const id = $stateParams.id
+  if (id) {
+    $scope.fetch(id)
   }
 })

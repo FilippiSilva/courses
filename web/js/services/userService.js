@@ -2,16 +2,16 @@ angular.module('app').service('userService', function () {
   this.user = {}
   this.users = []
 
-  this.fetchUser = function(id) {
+  function fetchUser(id) {
     return iAxios.get('/users/' + id)
       .then(response => {
-        const data = response.data.data
+        const data = response.data
         this.user = data
         return data
       })
   }
 
-  this.fetchUsers = function(query = {}) {
+  function fetchUsers(query = {}) {
     return iAxios.get('/users', {
         params: query
       })
@@ -22,12 +22,12 @@ angular.module('app').service('userService', function () {
       })
   }
 
-  this.delete = function(id) {
+  function remove(id) {
     return iAxios.delete('/users/' + id)
   }
 
 
-  this.persist = function(payload) {
+  function persist(payload) {
     return iAxios.post('/users', payload)
       .then(response => {
         const data = response.data
@@ -36,7 +36,7 @@ angular.module('app').service('userService', function () {
       })
   }
 
-  this.update = function(payload) {
+  function update(payload) {
     return iAxios.put('/users', payload)
       .then(response => {
         const data = response.data
@@ -45,8 +45,17 @@ angular.module('app').service('userService', function () {
       })
   }
 
-  this.save = function(payload) {
+  function save(payload) {
     if (payload.id) return this.update(payload)
     else return this.persist(payload)
+  }
+
+  return {
+    fetchUser,
+    fetchUsers,
+    remove,
+    persist,
+    update,
+    save
   }
 })

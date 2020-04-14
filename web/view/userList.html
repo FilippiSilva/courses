@@ -33,10 +33,10 @@
             <td md-cell>{{user.admission_date | slugify:'T' | date:'dd/MM/yyyy'}}</td>
             <td md-cell class="center">
               <form method="POST">
-                <md-button class="md-icon-button md-primary" aria-label="Editar">
+                <md-button class="md-icon-button md-primary" aria-label="Editar" ui-sref="userEdit({id: user.id})">
                   <md-icon>edit</md-icon>
                 </md-button>
-                <md-button class="md-icon-button md-warn" aria-label="Remover" ng-click="delete(user.id)">
+                <md-button class="md-icon-button md-warn" aria-label="Remover" ng-click="remove(user)">
                   <md-icon>delete</md-icon>
                 </md-button>
               </form>

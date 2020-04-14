@@ -25,7 +25,7 @@ angular.module('app', ['ui.router', 'ngMaterial', 'md.data.table', 'angular.filt
           name: 'userEdit',
           url: '/users/:id/edit',
           templateUrl: 'view/userForm.html',
-          controller: 'userFormCtrl',
+          controller: 'userFormCtrl'
           // resolve: {
           //   user: function (userFormCtrl, $stateParams) {
           //     return userFormCtrl.fetch($stateParams.id)
