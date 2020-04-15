@@ -21,7 +21,7 @@ class CourseController {
    */
   async index ({ request, response, view }) {
     let { page = 1, limit = 10, sort = 'title', sortDirection = 'asc'} = request.all()
-    return Course.query().orderBy(sort, sortDirection).paginate(page, limit)
+    return Course.query().with('users').orderBy(sort, sortDirection).paginate(page, limit)
   }
 
   /**
@@ -34,7 +34,17 @@ class CourseController {
    */
   async store ({ request, response }) {
     const data = request.only(['title', 'description', 'workload', 'value', 'cover'])
-    return Course.create(data)
+    const course = await Course.create(data)
+
+    const { users } = request.post()
+    console.log({users})
+    if (users && users.length > 0) {
+      await course.users().detach()
+      await course.users().attach(users)
+      course.users = await course.users().fetch()
+    }
+
+    return course
   }
 
   /**
@@ -47,7 +57,7 @@ class CourseController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    return Course.find(params.id)
+    return Course.query().with('users').where('id', '=', params.id).first()
   }
 
   /**
@@ -63,8 +73,17 @@ class CourseController {
     const course = await Course.find(params.id)
 
     course.merge(data)
+    await course.save()
 
-    return course.save()
+    const { users } = request.post()
+    console.log({users})
+    if (users && users.length > 0) {
+      await course.users().detach()
+      await course.users().attach(users)
+      course.users = await course.users().fetch()
+    }
+
+    return course
   }
 
   /**
