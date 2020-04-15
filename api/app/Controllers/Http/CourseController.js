@@ -37,7 +37,6 @@ class CourseController {
     const course = await Course.create(data)
 
     const { users } = request.post()
-    console.log({users})
     if (users && users.length > 0) {
       await course.users().detach()
       await course.users().attach(users)
@@ -76,7 +75,6 @@ class CourseController {
     await course.save()
 
     const { users } = request.post()
-    console.log({users})
     if (users && users.length > 0) {
       await course.users().detach()
       await course.users().attach(users)
