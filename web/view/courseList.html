@@ -32,9 +32,12 @@
               <td md-cell><img ng-src="{{course.cover}}" width="150"/></td>
               <td md-cell>{{course.title}}</td>
               <td md-cell class='center'>
-                <a href class="md-primary" ng-click='showModalUsers(course)'>
-                  ( <strong>{{ course.users.length }}</strong> )
-                </a>
+                <div ng-switch="course.users.length > 0">
+                  <a href class="md-primary" ng-click='showModalUsers(course)' ng-switch-when='true'>
+                    ( <strong>{{ course.users.length }}</strong> )
+                  </a>
+                  <span ng-switch-default>-</span>
+                </div>
               </td>
               <td md-cell>{{course.workload | durationTimeByMinutes}}</td>
               <td md-cell>{{course.value | currency}}</td>
