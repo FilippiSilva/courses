@@ -1,6 +1,6 @@
 <form name="userForm" ng-submit="onSubmit()">
   <md-content layout-padding>
-    <md-card class="p3">
+    <md-card class="p3" ng-loading="loading">
       <h1>Usuário</h1>
 
       <md-input-container class="container-name">
@@ -17,22 +17,21 @@
         <label>Email</label>
         <input ng-model="user.email" type="email" required>
       </md-input-container>
-
-      <md-input-container class="container-address">
-        <label>Endereço</label>
-        <input ng-model="user.address">
-      </md-input-container>
-
+      
       <md-input-container class="container-admission_date">
         <label>Admissão</label>
         <md-datepicker ng-model="user.admission_date"></md-datepicker>
       </md-input-container>
 
+      <md-input-container class="container-address">
+        <label>Endereço</label>
+        <input ng-model="user.address">
+      </md-input-container>
+ 
       <md-input-container class="container-avatar">
         <label>Avatar URL</label>
         <input ng-model="user.avatar">
       </md-input-container>
-
 
       <md-input-container class="container-username">
         <label>Login</label>
@@ -45,7 +44,7 @@
       </md-input-container>
 
       <div>
-        <md-button class="md-raised" md-colors="{background: 'green'}" aria-label="Novo" type="submit">
+        <md-button class="md-raised" md-colors="{background: 'green'}" aria-label="Novo" type="submit" ng-disabled='loading'>
           Salvar
         </md-button>
       </div>

@@ -1,5 +1,5 @@
 angular.module('app', ['ui.router', 'ngMaterial', 'md.data.table', 'angular.filter'])
-  	.config(function($stateProvider, $urlRouterProvider) {
+  	.config(function($stateProvider, $urlRouterProvider, $mdDateLocaleProvider) {
       $urlRouterProvider.otherwise('courses');
 
       $stateProvider
@@ -39,4 +39,14 @@ angular.module('app', ['ui.router', 'ngMaterial', 'md.data.table', 'angular.filt
           templateUrl: 'view/userForm.html',
           controller: 'userFormCtrl'
         })
+
+        const maskDate = 'DD/MM/YYYY'
+        $mdDateLocaleProvider.formatDate = function(date) {
+          return date ? moment(date).format(maskDate) : '';
+        };
+
+        $mdDateLocaleProvider.parseDate = function(dateString) {
+          var m = moment(dateString, maskDate, true);
+          return m.isValid() ? m.toDate() : new Date(NaN);
+        };
     })

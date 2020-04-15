@@ -1,6 +1,6 @@
 <form name="courseForm" ng-submit="onSubmit()">
   <md-content layout-padding>
-    <md-card class="p3">
+    <md-card class="p3" ng-loading="loading">
       <h1>Curso</h1>
 
       <md-input-container class="container-title">
@@ -51,7 +51,7 @@
       </md-input-container>
 
       <div>
-        <md-button class="md-raised" md-colors="{background: 'green'}" type="submit">
+        <md-button class="md-raised" md-colors="{background: 'green'}" type="submit" ng-disabled='loading'>
           Salvar
         </md-button>
       </div>

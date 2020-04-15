@@ -37,7 +37,7 @@ angular.module('app').service('userService', function () {
   }
 
   function update(payload) {
-    return iAxios.put('/users', payload)
+    return iAxios.put('/users/' + payload.id, payload)
       .then(response => {
         const data = response.data
         this.user = data.data
