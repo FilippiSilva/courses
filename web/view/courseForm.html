@@ -30,8 +30,28 @@
         <input ng-model="course.cover">
       </md-input-container>
       
+      <md-input-container class="container-users">
+        <label>Usuários</label>
+        <md-select ng-model="course.users"
+                   md-on-close="clearSearchTerm()"
+                   data-md-container-class="select-container"
+                   multiple>
+          <md-select-header class="select-header">
+            <input ng-model="searchTerm"
+                   type="search"
+                   autocomplete="off"
+                   placeholder="Procurar pelo nome"
+                   class="select-header-searchBox md-text">
+          </md-select-header>
+          <md-optgroup label="usuários">
+            <md-option ng-value="user.id" ng-repeat="user in users |
+              filter:searchTerm">{{user.name}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+
       <div>
-        <md-button class="md-raised" md-colors="{background: 'green'}" aria-label="Novo" type="submit">
+        <md-button class="md-raised" md-colors="{background: 'green'}" type="submit">
           Salvar
         </md-button>
       </div>
@@ -42,7 +62,8 @@
 <style>
   [name=courseForm] .container-title, 
   [name=courseForm] .container-description,
-  [name=courseForm] .container-cover {
+  [name=courseForm] .container-cover,
+  [name=courseForm] .container-users {
     max-width: 500px;
   }
 
